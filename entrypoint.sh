@@ -2,16 +2,13 @@
 
 # ---- BEGIN OF CONFIG SECTION ---- #
 
-# Tips:
-#   You can split value as variable
-#   e.g.
-#       minecraftVersion='1.19.4'
-#       artifactName=$(curl -fsSL -H 'accept: application/json' 'https://example.com/api/${minecraftVersion}/json' | jq -r '.artifacts[1].fileName')
-#       downloadUrl="https://example.com/download/${artifactName}"
+# Target Version
+paperVersion="1.20.1"
+buildNumber=`curl -s -X 'GET' -H 'accept: application/json' "https://api.papermc.io/v2/projects/paper/versions/${paperVersion}/builds" | jq '.builds[-1].build'`
 
 # Mandatory variables
-downloadUrl=""
-allocatedMemorySize=""
+downloadUrl="https://api.papermc.io/v2/projects/paper/versions/${paperVersion}/builds/${buildNumber}/downloads/paper-${paperVersion}-${buildNumber}.jar"
+allocatedMemorySize="4G"
 
 # Optional variables
 additionalJvmArguments=""
@@ -47,4 +44,4 @@ fi
 
 # Run server
 echo 'Booting server...'
-java -Xmx${allocatedMemorySize} -Xms${allocatedMemorySize} ${additionalJvmArguments} -jar server.jar --nogui
+java -Xmx${allocatedMemorySize} -Xms${allocatedMemorySize} ${additionalJvmArguments} -jar server.jar nogui
