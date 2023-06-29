@@ -9,11 +9,3 @@ services:
       - ./server:/server
       - /etc/localtime:/etc/localtime:ro
     network_mode: host
-#    ports:
-#      - "0.0.0.0:30000:30000"
-#    networks:
-#      - bamecraft
-
-#networks:
-#  bamecraft:
-#    external: true
