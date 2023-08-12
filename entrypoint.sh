@@ -11,7 +11,7 @@ purpurDownloadUrl="https://api.purpurmc.org/v2/purpur/${minecraftVersion}/${purp
 
 # Mandatory variables
 downloadUrl=${purpurDownloadUrl}
-allocatedMemorySize="4G"
+allocatedMemorySize="512M"
 
 # Optional variables
 additionalJvmArguments=""
@@ -47,4 +47,4 @@ fi
 
 # Run server
 echo 'Booting server...'
-java -Xmx${allocatedMemorySize} -Xms${allocatedMemorySize} ${additionalJvmArguments} -jar server.jar nogui
+java -Xmx${allocatedMemorySize} ${additionalJvmArguments} -jar server.jar nogui
